@@ -1,4 +1,16 @@
 class Vendor:
-    pass
+    def __init__(self, inventory=None):
+        if inventory == None:
+            self.inventory = []
+        else:
+            self.inventory = inventory
 
-#test for push/pull
+    def add(self, item):
+        self.inventory.append(item)
+        return item
+
+    def remove(self, item):
+        if item in self.inventory:
+            self.inventory.remove(item)
+            return item
+        return False
