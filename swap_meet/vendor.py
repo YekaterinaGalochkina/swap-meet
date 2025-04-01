@@ -61,5 +61,5 @@ class Vendor:
     
     def swap_best_by_category(self, other_vendor, my_priority, their_priority):
         if their_priority.get_category() == self.inventory.get_category():
-            
+            pass
 
