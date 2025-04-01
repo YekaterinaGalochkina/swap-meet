@@ -51,7 +51,7 @@ class Vendor:
                 category_items.append(item)
         return category_items
 
-    def get_best_by_category(self, category): # review this
+    def get_best_by_category(self, category): # review this - this makes sure best_item is not none otherwise it will stay as none
         best_item = None
         for item in self.inventory:
             if item.get_category() == category:
