@@ -12,6 +12,8 @@ class Item:
         return type(self).__name__ #looked this up and found this built-in function
         
 
-
+    def __str__(self): # overwrite default behavior of the built-in stringify
+        return f"An object of type Item with id {self.id}."
+    
 
 
