@@ -9,11 +9,11 @@ class Item:
 
 
     def get_category(self):
-        return type(self).__name__ #looked this up and found this built-in function
+        return type(self).__name__ 
         
 
     def __str__(self): # overwrite default behavior of the built-in stringify
-        return f"An object of type Item with id {self.id}."
+        return f"An object of type {self.get_category()} with id {self.id}."
     
 
 
