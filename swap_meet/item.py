@@ -1,4 +1,4 @@
-import uuid #imported this to generate id
+import uuid 
 
 class Item:
     def __init__(self, id=None, condition=0):
