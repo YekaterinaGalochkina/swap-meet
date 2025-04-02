@@ -25,8 +25,8 @@ class Item:
             4: "almost new condition",
             5: "new condition"
         }
-        for key, value in description.items():
-            if self.condition == key:
-                return value
+        if self.condition in description:  
+            return description[self.condition]  
+
 
 
