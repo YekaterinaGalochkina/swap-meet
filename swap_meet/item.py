@@ -4,11 +4,16 @@ class Item:
     def __init__(self, id=None, condition=0, age=0):
         if id == None:
             self.id = uuid.uuid4().int
+        elif not isinstance(id, int):
+            raise TypeError("id must be an integer")
         else:
             self.id = id
+        if condition < 0 or condition > 5:
+            raise ValueError("Condition must from 0 to 5")
+        if age < 0:
+            raise ValueError("Age must be a positive number")
         self.condition = condition
         self.age = age
-
 
     def get_category(self):
         return type(self).__name__ 

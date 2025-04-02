@@ -340,3 +340,20 @@ def test_swap_by_newest_empty_inventory():
     assert result == False
     assert len(tai.inventory) == 0
     assert len(jesse.inventory) == 3
+
+
+# Test for raising Errors in Item:
+
+def test_invalid_id():
+    with pytest.raises(TypeError, match="id must be an integer"):
+        Item(id='1')
+
+def test_invalid_condition():
+    with pytest.raises(ValueError, match="Condition must from 0 to 5"):
+        Item(condition=6)
+
+def test_invalid_age():
+    with pytest.raises(ValueError, match="Age must be a positive number"):
+        Item(age = -6)
+
+
