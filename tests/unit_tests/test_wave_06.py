@@ -255,3 +255,88 @@ def test_swap_best_by_category_no_other_match_is_false():
     assert len(tai.inventory) == 3
     assert len(jesse.inventory) == 3
 
+# test for swap_by_newest()
+def test_swap_by_newest():
+    # Arrange
+    # me
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
+    tai = Vendor(
+        inventory=[item_a, item_b, item_c]
+    )
+
+    # them
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
+    jesse = Vendor(
+        inventory=[item_d, item_e, item_f]
+    )
+
+    # Act
+    result = tai.swap_by_newest(
+        other_vendor=jesse
+    )
+
+    #Assert
+    assert result == True
+    assert len(jesse.inventory) == len(tai.inventory) == 3
+    assert item_d in tai.inventory
+    assert item_a in jesse.inventory
+
+def test_swap_by_newest_reordered():
+    # Arrange
+    #tai
+    item_a = Decor(age=2.0)
+    item_b = Electronics(age=4.0)
+    item_c = Decor(age=4.0)
+    tai = Vendor(
+        inventory=[item_c, item_b, item_a]
+    )
+    #jesse
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
+    jesse = Vendor(
+        inventory=[item_f, item_e, item_d]
+    )
+
+    # Act
+    result = tai.swap_by_newest(
+        other_vendor=jesse
+    )
+
+    # Assert
+    assert result == True
+    assert len(jesse.inventory) == len(tai.inventory) == 3
+    assert item_d in tai.inventory
+    assert item_a in jesse.inventory
+    assert item_d not in jesse.inventory
+    assert item_a not in tai.inventory
+
+def test_swap_by_newest_empty_inventory():
+    # Arrange
+    # item_a = Decor(age=2.0)
+    # item_b = Electronics(age=4.0)
+    # item_c = Decor(age=3.0)
+    tai = Vendor(
+        inventory=[]
+    )
+
+    item_d = Clothing(age=2.0)
+    item_e = Decor(age=4.0)
+    item_f = Clothing(age=4.0)
+    jesse = Vendor(
+        inventory=[item_d, item_e, item_f]
+    )
+
+    # Act
+    result = tai.swap_by_newest(
+        other_vendor=jesse
+    )
+
+    # Assert
+    assert result == False
+    assert len(tai.inventory) == 0
+    assert len(jesse.inventory) == 3
