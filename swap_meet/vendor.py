@@ -51,7 +51,7 @@ class Vendor:
                 category_items.append(item)
         return category_items
 
-    def get_best_by_category(self, category): # review this
+    def get_best_by_category(self, category): # review this - this makes sure best_item is not none otherwise it will stay as none
         best_item = None
         for item in self.inventory:
             if item.get_category() == category:
@@ -60,13 +60,7 @@ class Vendor:
         return best_item
     
     def swap_best_by_category(self, other_vendor, my_priority, their_priority):
-        my_best_item = self.get_best_by_category(their_priority)
-        their_best_item = other_vendor.get_best_by_category(my_priority)
-        
-        if not my_best_item or not their_best_item:
-            return False
-        
-        if my_best_item and their_best_item:
-            return self.swap_items(other_vendor, my_best_item, their_best_item)
+        if their_priority.get_category() == self.inventory.get_category():
+            
 
             
