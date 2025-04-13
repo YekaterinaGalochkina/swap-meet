@@ -349,11 +349,11 @@ def test_invalid_id():
         Item(id='1')
 
 def test_invalid_condition():
-    with pytest.raises(ValueError, match="Condition must from 0 to 5"):
+    with pytest.raises(ValueError, match="Condition must be a number from 0 to 5"):
         Item(condition=6)
 
 def test_invalid_age():
-    with pytest.raises(ValueError, match="Age must be a positive number"):
+    with pytest.raises(ValueError, match="Age must be a non-negative number"):
         Item(age = -6)
 
 
